@@ -12,7 +12,3 @@ class Cliente(models.Model):
     def __unicode__(self):
         return self.nome
 
-# XXX: colocar no admin.py
-from django.contrib import admin
-admin.site.register(Cliente)
-
