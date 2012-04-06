@@ -1,0 +1,18 @@
+<html>
+<body>
+<h1>Lista de clientes</h1>
+
+<table>
+    {% for cli in lista %}
+    <tr bgcolor="{% cycle 'gray' 'lightgray' 'white' %}">
+        <td>{{cli.id}}</td>
+        <td><a href="{{cli.get_absolute_url}}">{{cli.nome}}</a></td>
+        <td>{{cli.endereco}}</td>
+    </tr>
+    {% endfor %}   
+</table>
+
+</body>
+
+
+</html>

@@ -18,6 +18,11 @@ class Cliente(models.Model):
         unique_together = ('fone', 'ramal')
         ordering = ['fone', 'ramal']
         
+    @models.permalink
+    def get_absolute_url(self):
+        #return '/ent/cli/%s' % self.id
+        return ('ficha-cli', (), {'pk':self.id})
+        
     def __unicode__(self):
         fone = self.fone
         if self.ramal:
