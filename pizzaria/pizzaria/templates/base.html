@@ -1,0 +1,18 @@
+<html>
+<head>
+<link rel="stylesheet" type="text/css" 
+      href="{{ STATIC_URL }}css/basico.css" />
+</head>
+<body>
+<h1>{% block chamada %}Chamada{% endblock %}</h1>
+
+{% block corpo %}
+Aqui vai o corpo da página
+{% endblock corpo %}
+
+<img src="{{ STATIC_URL }}pizza-recheada-8.jpg" width="120" />
+
+</body>
+
+
+</html>

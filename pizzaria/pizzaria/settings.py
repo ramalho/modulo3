@@ -67,6 +67,7 @@ STATIC_URL = '/static/'
 
 # Additional locations of static files
 STATICFILES_DIRS = (
+    '/home/turma2/modulo3/repo/pizzaria/pizzaria/static',
     # Put strings here, like "/home/html/static" or "C:/www/django/static".
     # Always use forward slashes, even on Windows.
     # Don't forget to use absolute paths, not relative paths.
@@ -106,6 +107,7 @@ ROOT_URLCONF = 'pizzaria.urls'
 WSGI_APPLICATION = 'pizzaria.wsgi.application'
 
 TEMPLATE_DIRS = (
+    '/home/turma2/modulo3/repo/pizzaria/pizzaria/templates',
     # Put strings here, like "/home/html/django_templates" or "C:/www/django/templates".
     # Always use forward slashes, even on Windows.
     # Don't forget to use absolute paths, not relative paths.
