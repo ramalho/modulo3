@@ -1,7 +1,7 @@
 from django.conf.urls import patterns, include, url
 from django.views.generic import ListView, DetailView
 
-from .views import HoraView, pizzas_pendentes, hello
+from .views import HoraView, pizzas_pendentes, hello, cadastro
 from .models import Pizza, Cliente
 
 urlpatterns = patterns('',
@@ -14,6 +14,8 @@ urlpatterns = patterns('',
     url(r'clientes$', ListView.as_view(model=Cliente,
                                      context_object_name='lista'),
                                      name='lista-clientes'),
+
+    url(r'novocli/$', cadastro, name='cadastro-novo'),
     url(r'cli/(?P<pk>\d+)$', 
         DetailView.as_view(model=Cliente, context_object_name='cli'),
         name='ficha-cli'),

@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+
+{% block chamada %}Cadastro de cliente novo{% endblock %}
+
+{% block corpo %}
+
+<form action="." method="POST">
+
+    {% csrf_token %}
+
+    {{ formulario.as_p }}
+
+    <input type="submit" value="Enviar" />
+
+</form>
+
+{% endblock corpo %}

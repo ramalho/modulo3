@@ -2,13 +2,14 @@
 
 # Create your views here.
 
-from django.http import HttpResponse
+from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import render
 from django.views.generic import TemplateView
 
 import datetime
 
 from .models import Pizza
+from .forms import ClienteModelForm
 
 def pizzas_pendentes(request):
     return render(request, 'entrega/pizzas.html', 
@@ -42,6 +43,25 @@ def pizzas_pendentes_na_unha(request):
 def hello(request, texto):
     html = '<h1>Hello, %s</h1>' % texto
     return HttpResponse(html)
+    
+def cadastro(request):
+    if request.method == 'POST':
+        formulario = ClienteModelForm(request.POST)
+        if formulario.is_valid():
+            formulario.save()
+            # XXXX: usar reverse em vez de URL amarrada
+            return HttpResponseRedirect('/ent/clientes')
+    else:
+        formulario = ClienteModelForm()
+        
+    return render(request, 'entrega/cadastro.html',
+        {'formulario':formulario})
+        
+        
+        
+    
+    
+    
     
 
 
