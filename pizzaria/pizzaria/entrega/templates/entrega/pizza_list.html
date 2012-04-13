@@ -6,10 +6,23 @@
 
 <h2>{{hora}}</h2>
 
-<ol>
+<table border="1">
 {% for pizza in lista %}
-   <li>{{pizza}}</li>
+   <tr>
+       <td>{{ forloop.counter }}</td>
+       <td>
+            <form action="{% url pedido-pronto %}" method="POST">
+                {% csrf_token %}
+                <input type="hidden" name="pedido_id" value="{{pizza.pedido_id}}">
+                <input type="submit" value="Pedido {{pizza.pedido_id}} pronto" name="pronto">
+            </form>
+       </td>
+       <td>{{pizza.pedido_id}}</td>
+       <td>{{pizza}}</td>
+   </tr>
+{% empty %}
+   <tr><th>Nenhuma pizza a fazer</th></tr>      
 {% endfor %}   
-</ol>
+</table>
 
 {% endblock corpo %}

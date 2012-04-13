@@ -8,8 +8,8 @@ from django.views.generic import TemplateView
 
 import datetime
 
-from .models import Pizza
-from .forms import ClienteModelForm
+from .models import Pizza, Pedido
+from .forms import ClienteModelForm, ObservacaoClienteForm
 
 def pizzas_pendentes(request):
     return render(request, 'entrega/pizzas.html', 
@@ -43,21 +43,39 @@ def pizzas_pendentes_na_unha(request):
 def hello(request, texto):
     html = '<h1>Hello, %s</h1>' % texto
     return HttpResponse(html)
+
+from django.core.urlresolvers import reverse
     
 def cadastro(request):
     if request.method == 'POST':
         formulario = ClienteModelForm(request.POST)
         if formulario.is_valid():
             formulario.save()
-            # XXXX: usar reverse em vez de URL amarrada
-            return HttpResponseRedirect('/ent/clientes')
+            return HttpResponseRedirect(reverse('lista-clientes'))
     else:
         formulario = ClienteModelForm()
         
     return render(request, 'entrega/cadastro.html',
         {'formulario':formulario})
         
-        
+def pedido_pronto(request):
+    if request.method == 'POST':
+        pedido_id = request.POST.get('pedido_id')
+        pedido = Pedido.objects.get(pk=pedido_id)
+        pedido.pronto = True
+        pedido.save()
+    return HttpResponseRedirect(reverse('lista-pizzas'))
+    
+def cliente_obs(request):
+    if request.method == 'POST':
+        formulario = ObservacaoClienteForm(request.POST)
+        if formulario.is_valid():
+            cliente_id = request.POST.get('cliente_id')
+            cliente = Cliente.objects.get(pk=cliente_id)
+            cliente.obs = formulario.cleaned_data['obs']
+            cliente.save()
+    return HttpResponseRedirect(reverse('ficha-cli'))
+
         
     
     

@@ -7,10 +7,19 @@
 <form action="." method="POST">
 
     {% csrf_token %}
+    
+    {# aqui vai um comentario #}
+    
+    <table border="1">
+       {{ formulario.as_table }}
 
-    {{ formulario.as_p }}
+       <tr>
+           <td></td>
+           <td><input type="submit" value="Enviar" /></td>
+       </tr>
+    
+    </table>
 
-    <input type="submit" value="Enviar" />
 
 </form>
 

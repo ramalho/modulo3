@@ -1,10 +1,12 @@
 # coding: utf-8
 
-from django.forms import ModelForm
+from django import forms
 
 from .models import Cliente
 
-class ClienteModelForm(ModelForm):
+class ClienteModelForm(forms.ModelForm):
     class Meta:
         model = Cliente
 
+class ObservacaoClienteForm(forms.Form):
+    obs = forms.CharField()
